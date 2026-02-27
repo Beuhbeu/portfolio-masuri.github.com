@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+            color: white;
+            padding: 40px;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            background: white;
+            color: black;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        /* Sous‑titre */
+        p.subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .layout {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .left-menu {
+            display: flex;
+            flex-direction: column;
+            min-width: 180px;
+        }
+
+        .projects-zone {
+            flex: 1;
+        }
+
+        .project {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-left: 3px solid white;
+        }
+
+        .project h2 {
+            margin: 0;
+        }
+
+        .project p {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Mes Projets</h1>
+
+    <!-- Sous‑titre ajouté -->
+    <p class="subtitle">
+       Ici, vous retrouverez des projets que j'ai pu réaliser durant mes formations. Il sera question de chef d'oeuvre et de missions réalisées. 
+    </p>
+
+    <div class="layout">
+
+        <div class="left-menu">
+            <a href="index.html">Profil</a>
+            <a href="formations.html">Formations</a>
+        </div>
+
+        <div class="projects-zone">
+
+            <div class="project">
+                <h2>Projet 1</h2>
+                <p>Description rapide du projet.</p>
+            </div>
+
+            <div class="project">
+                <h2>Projet 2</h2>
+                <p>Description rapide du projet.</p>
+            </div>
+
+            <div class="project">
+                <h2>Projet 3</h2>
+                <p>Description rapide du projet.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
