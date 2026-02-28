@@ -77,16 +77,23 @@
         /* Bloc contenant la formation 3 + image */
         .albert-block {
             position: relative;
-            min-height: 320px; /* espace pour l'image */
+            min-height: 600px; /* HAUTEUR AUGMENTÉE POUR ÉVITER LE CHEVAUCHEMENT */
         }
 
         .albert-block img {
             position: absolute;
             right: 0;
             top: 20px;
-            width: 280px;      /* plus grande que Carnot */
+            width: 300px;      /* plus grande que Carnot */
             border-radius: 8px;
         }
+
+        /* Réserve plus d'espace à droite pour le texte */
+        .albert-block .formation-text,
+        .albert-block p {
+            margin-right: 330px; /* espace réservé pour l'image */
+        }
+
     </style> 
 </head>
 
