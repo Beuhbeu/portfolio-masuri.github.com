@@ -50,19 +50,29 @@
 
         h2 {
             font-size: 1.7rem;
-            margin-top: 30px;
-            margin-bottom: 5px;
+            margin-top: 40px;   /* espace régulier avant chaque titre */
+            margin-bottom: 15px;
         }
 
         .formation-text {
             font-size: 1.2rem;
             opacity: 0.9;
+            margin-bottom: 15px; /* espace régulier après le sous-titre */
         }
 
-        /* BLOC FORMATION 1 + 2 */
+        /* Paragraphes réguliers */
+        .double-formation-block p,
+        .albert-block p {
+            margin-top: 12px;
+            margin-bottom: 12px;
+            line-height: 1.45;
+            margin-right: 330px; /* espace réservé pour l'image */
+        }
+
+        /* Bloc contenant les deux premières formations + image */
         .double-formation-block {
             position: relative;
-            min-height: 900px; /* HAUTEUR AUGMENTÉE POUR ÉVITER LE CHEVAUCHEMENT */
+            min-height: 950px; /* hauteur augmentée pour éviter chevauchement */
         }
 
         .double-formation-block img {
@@ -73,16 +83,10 @@
             border-radius: 8px;
         }
 
-        /* RÉSERVE DE L’ESPACE À DROITE POUR LE TEXTE */
-        .double-formation-block .formation-text,
-        .double-formation-block p {
-            margin-right: 330px;
-        }
-
-        /* BLOC FORMATION 3 */
+        /* Bloc contenant la formation 3 + image */
         .albert-block {
             position: relative;
-            min-height: 600px;
+            min-height: 650px;
         }
 
         .albert-block img {
@@ -91,11 +95,6 @@
             top: 20px;
             width: 300px;
             border-radius: 8px;
-        }
-
-        .albert-block .formation-text,
-        .albert-block p {
-            margin-right: 330px;
         }
 
     </style> 
