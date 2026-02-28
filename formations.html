@@ -1,32 +1,104 @@
 <!DOCTYPE html> 
 <html lang="fr"> 
-    <head> 
-        <meta charset="UTF-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>Formations</title> <style> body { margin: 0; font-family: Arial, sans-serif; 
-            background: linear-gradient(135deg, #1e1e1e, #3a3a3a); color: white; padding: 40px; } /* Liens horizontaux */ 
-            .top-links { margin-bottom: 10px; } .top-links a { color: white; text-decoration: none; border: 2px solid white;
-             padding: 10px 20px; border-radius: 8px; display: inline-block; margin-right: 15px; transition: 0.3s; } 
-             .top-links a:hover { background: white; color: black; } /* Barre horizontale */ 
-             .separator { width: 100%; height: 2px; background-color: white; margin: 20px 0 30px 0; opacity: 0.7; } 
-             h1 { font-size: 2.5rem; } p.intro { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin-bottom: 30px; } 
-             ul { font-size: 1.2rem; opacity: 0.9; } </style> 
-             </head>
-              <body> <!-- Liens horizontaux -->
-                 <div class="top-links"> 
-                    <a href="index.html">Profil</a> 
-                    <a href="projets.html">Projets</a>
-                </div> <!-- Barre horizontale --> 
-                <div class="separator"></div> 
-                <h1>Mes Formations</h1> 
-                <p class="intro"> Ici, vous trouverez les différentes formations que j'ai reçu lors de mon parcours scolaire. Je présenterais brièvement les établissements et les formations que j'ai eu. </p> 
-                <p>Ces formations décrites commencerons à partir de mon éntrée en formation professionnelle.</p>
-                  <ul> 
-                    <li>Formation 1 – Lycée Carnot (Roanne), Seconde NTE (Numérique et Transitions Énergétique)</li> 
-                    <li>Formation 2 – Lycée Carnot (Roanne), Première et terminale SN (Systèmes Numriques)</li> 
-                    <li>Formation 3 – Lycées Albert Londres (Cusset), BTS SIO (Système Informatique aux Organisations) -En cours- </li> 
-                </ul> 
-            </body> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Formations</title> 
+    <style> 
+        body { 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(135deg, #1e1e1e, #3a3a3a); 
+            color: white; 
+            padding: 40px; 
+        } 
 
-            </html>
+        .top-links { margin-bottom: 10px; } 
 
+        .top-links a { 
+            color: white; 
+            text-decoration: none; 
+            border: 2px solid white;
+            padding: 10px 20px; 
+            border-radius: 8px; 
+            display: inline-block; 
+            margin-right: 15px; 
+            transition: 0.3s; 
+        } 
+
+        .top-links a:hover { 
+            background: white; 
+            color: black; 
+        } 
+
+        .separator { 
+            width: 100%; 
+            height: 2px; 
+            background-color: white; 
+            margin: 20px 0 30px 0; 
+            opacity: 0.7; 
+        } 
+
+        h1 { font-size: 2.5rem; } 
+
+        p.intro { 
+            font-size: 1.2rem; 
+            opacity: 0.9; 
+            max-width: 700px; 
+            margin-bottom: 30px; 
+        } 
+
+        /* Style des titres de formation */
+        .formation-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 5px;
+        }
+
+        .formation-text {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-left: 10px;
+        }
+    </style> 
+</head>
+
+<body>
+
+    <div class="top-links"> 
+        <a href="index.html">Profil</a> 
+        <a href="projets.html">Projets</a>
+    </div>
+
+    <div class="separator"></div> 
+
+    <h1>Mes Formations</h1> 
+
+    <p class="intro">
+        Ici, vous trouverez les différentes formations que j'ai reçu lors de mon parcours scolaire. 
+        Je présenterais brièvement les établissements et les formations que j'ai eu.
+    </p> 
+
+    <p>Ces formations décrites commencerons à partir de mon éntrée en formation professionnelle.</p>
+
+    <!-- FORMATION 1 -->
+    <div class="formation-title">Formation 1</div>
+    <div class="formation-text">
+        Lycée Carnot (Roanne), Seconde NTE (Numérique et Transitions Énergétique)
+    </div>
+
+    <!-- FORMATION 2 -->
+    <div class="formation-title">Formation 2</div>
+    <div class="formation-text">
+        Lycée Carnot (Roanne), Première et terminale SN (Systèmes Numriques)
+    </div>
+
+    <!-- FORMATION 3 -->
+    <div class="formation-title">Formation 3</div>
+    <div class="formation-text">
+        Lycées Albert Londres (Cusset), BTS SIO (Système Informatique aux Organisations) -En cours-
+    </div>
+
+</body>
+</html>
