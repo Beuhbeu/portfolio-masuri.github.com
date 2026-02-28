@@ -57,19 +57,21 @@
         .formation-text {
             font-size: 1.2rem;
             opacity: 0.9;
-            margin-right: 220px; /* espace augmenté pour image plus grande */
+            margin-right: 260px; /* espace plus large pour image haute */
         }
 
-        .formation-block {
+        /* Bloc contenant les deux premières formations + image */
+        .double-formation-block {
             position: relative;
-            min-height: 200px; /* hauteur augmentée pour image plus grande */
+            min-height: 350px; /* hauteur suffisante pour couvrir les deux formations */
         }
 
-        .formation-block img {
+        .double-formation-block img {
             position: absolute;
             right: 0;
-            top: 10px;
-            width: 200px; /* IMAGE AGRANDIE */
+            top: 20px;
+            width: 240px; /* image agrandie */
+            height: auto;
             border-radius: 8px;
         }
     </style> 
@@ -93,21 +95,21 @@
 
     <p>Ces formations décrites commencerons à partir de mon éntrée en formation professionnelle.</p>
 
-    <!-- FORMATION 1 -->
-    <div class="formation-block">
+    <!-- FORMATION 1 + FORMATION 2 + IMAGE -->
+    <div class="double-formation-block">
+
         <h2>Formation 1 – Lycée Carnot (Roanne)</h2>
         <div class="formation-text">
             Seconde NTE (Numérique et Transitions Énergétique)
         </div>
 
-        <!-- IMAGE À DROITE AGRANDIE -->
-        <img src="carnot.jpg" alt="Lycée Carnot">
-    </div>
+        <h2>Formation 2 – Lycée Carnot (Roanne)</h2>
+        <div class="formation-text">
+            Première et terminale SN (Systèmes Numriques)
+        </div>
 
-    <!-- FORMATION 2 -->
-    <h2>Formation 2 – Lycée Carnot (Roanne)</h2>
-    <div class="formation-text">
-        Première et terminale SN (Systèmes Numriques)
+        <!-- IMAGE QUI COUVRE LES DEUX FORMATIONS -->
+        <img src="carnot.jpg" alt="Lycée Carnot">
     </div>
 
     <!-- FORMATION 3 -->
