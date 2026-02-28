@@ -57,21 +57,27 @@
         .formation-text {
             font-size: 1.2rem;
             opacity: 0.9;
-            margin-right: 260px; /* espace plus large pour image haute */
+            margin-right: 260px;
         }
 
-        /* Bloc contenant les deux premières formations + image */
         .double-formation-block {
             position: relative;
-            min-height: 350px; /* hauteur suffisante pour couvrir les deux formations */
+            min-height: 350px;
         }
 
         .double-formation-block img {
             position: absolute;
             right: 0;
             top: 20px;
-            width: 240px; /* image agrandie */
-            height: auto;
+            width: 240px;
+            border-radius: 8px;
+        }
+
+        /* STYLE POUR L'IMAGE ALBERT LONDRES (RÉDUITE) */
+        .small-img {
+            width: 180px;      /* taille réduite */
+            float: right;
+            margin-top: -20px; /* ajuste la hauteur pour l'aligner */
             border-radius: 8px;
         }
     </style> 
@@ -108,7 +114,6 @@
             Première et terminale SN (Systèmes Numriques)
         </div>
 
-        <!-- IMAGE QUI COUVRE LES DEUX FORMATIONS -->
         <img src="carnot.jpg" alt="Lycée Carnot">
     </div>
 
@@ -117,9 +122,9 @@
     <div class="formation-text">
         BTS SIO (Système Informatique aux Organisations) -En cours-
 
-          <img src="albert londres.jpg" alt="Lycée albert londres">
+        <!-- IMAGE RÉDUITE -->
+        <img src="albert londres.jpg" alt="Lycée Albert Londres" class="small-img">
     </div>
 
 </body>
 </html>
-
