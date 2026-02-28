@@ -63,35 +63,40 @@
         /* Bloc contenant les deux premières formations + image */
         .double-formation-block {
             position: relative;
-            min-height: 350px;
+            min-height: 650px; /* HAUTEUR AUGMENTÉE POUR ÉVITER LE CHEVAUCHEMENT */
         }
 
         .double-formation-block img {
             position: absolute;
             right: 0;
             top: 20px;
-            width: 240px;
+            width: 260px;      /* légèrement plus grande */
             border-radius: 8px;
+        }
+
+        /* Réserve plus d'espace à droite pour le texte */
+        .double-formation-block .formation-text,
+        .double-formation-block p {
+            margin-right: 330px;
         }
 
         /* Bloc contenant la formation 3 + image */
         .albert-block {
             position: relative;
-            min-height: 600px; /* HAUTEUR AUGMENTÉE POUR ÉVITER LE CHEVAUCHEMENT */
+            min-height: 600px;
         }
 
         .albert-block img {
             position: absolute;
             right: 0;
             top: 20px;
-            width: 300px;      /* plus grande que Carnot */
+            width: 300px;
             border-radius: 8px;
         }
 
-        /* Réserve plus d'espace à droite pour le texte */
         .albert-block .formation-text,
         .albert-block p {
-            margin-right: 330px; /* espace réservé pour l'image */
+            margin-right: 330px;
         }
 
     </style> 
