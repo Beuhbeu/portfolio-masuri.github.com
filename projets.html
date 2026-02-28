@@ -50,18 +50,75 @@
             flex: 1;
         }
 
-        .project {
-            margin-bottom: 25px;
+        /* --- NOUVEAU SYSTÈME DE PROJETS --- */
+
+        .project-block {
+            margin-bottom: 40px;
             padding: 15px;
             border-left: 3px solid white;
         }
 
-        .project h2 {
-            margin: 0;
+        .project-block h2 {
+            margin-top: 0;
         }
 
-        .project p {
+        .project-text {
             opacity: 0.9;
+            font-size: 1.1rem;
+            line-height: 1.45;
+            margin-bottom: 15px;
+        }
+
+        /* Photos sous le texte */
+        .project-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .project-images img {
+            width: 160px;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .project-images img:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- ZOOM AU CLIC (LIGHTBOX) --- */
+
+        #zoom-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #zoom-container img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        #zoom-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
         }
 
         /* Section des 9 liens */
@@ -89,19 +146,43 @@
 
         <div class="projects-zone">
 
-            <div class="project">
+            <!-- PROJET 1 -->
+            <div class="project-block">
                 <h2>Projet 1</h2>
-                <p>Description rapide du projet.</p>
+                <div class="project-text">
+                    Description rapide du projet.
+                </div>
+
+                <div class="project-images">
+                    <img src="photo1.jpg" onclick="zoom(this.src)">
+                    <img src="photo2.jpg" onclick="zoom(this.src)">
+                    <img src="photo3.jpg" onclick="zoom(this.src)">
+                </div>
             </div>
 
-            <div class="project">
+            <!-- PROJET 2 -->
+            <div class="project-block">
                 <h2>Projet 2</h2>
-                <p>Description rapide du projet.</p>
+                <div class="project-text">
+                    Description rapide du projet.
+                </div>
+
+                <div class="project-images">
+                    <img src="photo1.jpg" onclick="zoom(this.src)">
+                    <img src="photo2.jpg" onclick="zoom(this.src)">
+                </div>
             </div>
 
-            <div class="project">
+            <!-- PROJET 3 -->
+            <div class="project-block">
                 <h2>Projet 3</h2>
-                <p>Description rapide du projet.</p>
+                <div class="project-text">
+                    Description rapide du projet.
+                </div>
+
+                <div class="project-images">
+                    <img src="photo1.jpg" onclick="zoom(this.src)">
+                </div>
             </div>
 
             <!-- SECTION DES 9 LIENS -->
@@ -120,8 +201,22 @@
 
     </div>
 
+    <!-- LIGHTBOX POUR ZOOM -->
+    <div id="zoom-container" onclick="closeZoom()">
+        <span id="zoom-close">&times;</span>
+        <img id="zoom-img" src="">
+    </div>
+
+    <script>
+        function zoom(src) {
+            document.getElementById("zoom-img").src = src;
+            document.getElementById("zoom-container").style.display = "flex";
+        }
+
+        function closeZoom() {
+            document.getElementById("zoom-container").style.display = "none";
+        }
+    </script>
+
 </body>
 </html>
-
-
-
