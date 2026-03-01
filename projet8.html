@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet - Exemple</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+            color: white;
+            padding: 40px;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            background: white;
+            color: black;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .project-text {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            max-width: 800px;
+            margin-bottom: 25px;
+        }
+
+        /* Image sous le texte */
+        .project-image {
+            width: 300px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .project-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox zoom */
+        #zoom-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #zoom-img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            animation: zoomIn 0.25s ease;
+        }
+
+        #zoom-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.6); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="projets.html">← Retour aux projets</a>
+
+    <h1>Nom du Projet</h1>
+
+    <div class="project-text">
+        Voici la description détaillée de ton projet.  
+        Tu peux écrire autant de texte que tu veux ici, il s’adaptera automatiquement.
+    </div>
+
+    <img src="photo1.jpg" class="project-image" onclick="zoom(this.src)">
+
+    <!-- Lightbox -->
+    <div id="zoom-container" onclick="closeZoom()">
+        <span id="zoom-close">&times;</span>
+        <img id="zoom-img" src="">
+    </div>
+
+    <script>
+        function zoom(src) {
+            document.getElementById("zoom-img").src = src;
+            document.getElementById("zoom-container").style.display = "flex";
+        }
+
+        function closeZoom() {
+            document.getElementById("zoom-container").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
 
