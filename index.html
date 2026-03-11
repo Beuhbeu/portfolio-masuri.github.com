@@ -23,7 +23,14 @@
 
         h1 {
             font-size: 3rem;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-bottom: 10px;
         }
 
         /* MENU VERTICAL */
@@ -31,7 +38,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-bottom: 40px;
+            margin-top: 30px; /* espace entre le texte et les boutons */
         }
 
         .menu a {
@@ -49,12 +56,6 @@
             background: white;
             color: black;
         }
-
-        p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 700px;
-        }
     </style>
 </head>
 
@@ -62,19 +63,19 @@
 
     <h1>Bienvenue sur mon Portfolio</h1>
 
-    <!-- MENU VERTICAL CENTRÉ -->
-    <div class="menu">
-        <a href="index.html">Accueil</a>
-        <a href="profil.html">Profil</a>
-        <a href="projets.html">Projets</a>
-    </div>
-
     <p>
         Sur ce site, vous trouverez un bref résumé de mon profil, des projets que j'ai pu réaliser et des formations et stages que j'ai effectués.
     </p>
     <p>
         Des versions plus détaillées de chaque partie pourront être trouvées dans les sections dédiées.
     </p>
+
+    <!-- MENU VERTICAL SOUS LE TEXTE -->
+    <div class="menu">
+        <a href="index.html">Accueil</a>
+        <a href="profil.html">Profil</a>
+        <a href="projets.html">Projets</a>
+    </div>
 
 </body>
 </html>
