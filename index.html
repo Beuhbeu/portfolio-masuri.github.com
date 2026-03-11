@@ -6,12 +6,43 @@
     <title>Accueil</title>
 
     <style>
+        /* MENU FIXE */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            padding: 15px 20px;
+            display: flex;
+            gap: 20px;
+            border-bottom: 1px solid white;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background: white;
+            color: black;
+        }
+
+        /* STYLE GLOBAL */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
             color: white;
             padding: 40px;
+            padding-top: 100px; /* espace pour le menu fixe */
         }
 
         h1 {
@@ -29,6 +60,8 @@
             font-size: 1.2rem;
             opacity: 0.9;
             max-width: 900px;
+            margin: auto;
+            text-align: center;
         }
 
         .separator {
@@ -103,18 +136,25 @@
         }
     </style>
 </head>
-<div class="top-links"> 
-        <a href="profil.html">Profil</a> 
-        <a href="projets.html">Projets</a>
-    </div>
+
 <body>
+
+    <!-- MENU FIXE -->
+    <nav class="navbar">
+        <a href="index.html">Accueil</a>
+        <a href="profil.html">Profil</a>
+        <a href="projets.html">Projets</a>
+    </nav>
 
     <!-- SECTION ACCUEIL -->
     <h1>Bienvenue sur mon Portfolio</h1>
 
-    <p style="text-align:center; margin: 0 auto;">
+    <p>
         Sur ce site, vous trouverez un bref résumé de mon profil, des projets que j'ai pu réaliser et des formations et stages que j'ai effectués.
     </p>
-    <p style="text-align:center; margin: 0 auto;">
+    <p>
         Des versions plus détaillées de chaque partie pourront être trouvées dans les sections dédiées.
     </p>
+
+</body>
+</html>
