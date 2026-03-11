@@ -12,7 +12,6 @@
             background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
             color: white;
 
-            /* Centrage du contenu */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -22,10 +21,16 @@
             text-align: center;
         }
 
-        /* BOUTONS DU MENU */
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        /* MENU VERTICAL */
         .menu {
             display: flex;
-            gap: 20px;
+            flex-direction: column;
+            gap: 15px;
             margin-bottom: 40px;
         }
 
@@ -37,6 +42,7 @@
             border: 2px solid white;
             border-radius: 8px;
             transition: 0.3s;
+            width: 200px;
         }
 
         .menu a:hover {
@@ -54,14 +60,14 @@
 
 <body>
 
-    <!-- MENU CENTRÉ -->
+    <h1>Bienvenue sur mon Portfolio</h1>
+
+    <!-- MENU VERTICAL CENTRÉ -->
     <div class="menu">
         <a href="index.html">Accueil</a>
         <a href="profil.html">Profil</a>
         <a href="projets.html">Projets</a>
     </div>
-
-    <h1>Bienvenue sur mon Portfolio</h1>
 
     <p>
         Sur ce site, vous trouverez un bref résumé de mon profil, des projets que j'ai pu réaliser et des formations et stages que j'ai effectués.
