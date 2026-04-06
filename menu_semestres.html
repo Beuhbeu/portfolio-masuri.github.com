@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Choix du semestre</title>
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,7 +19,14 @@
 
         h1 {
             font-size: 2.5em;
-            margin-bottom: 50px;
+            margin-bottom: 10px;
+        }
+
+        /* Sous-texte ajouté */
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.85;
+            margin-bottom: 40px;
         }
 
         .buttons {
@@ -47,10 +53,11 @@
         }
     </style>
 </head>
-
 <body>
 
     <h1>Choisissez un semestre</h1>
+
+    <div class="subtitle">Sélectionnez le semestre que vous souhaitez consulter</div>
 
     <div class="buttons">
         <button onclick="location.href='semestre1.html'">Semestre 1</button>
