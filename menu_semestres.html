@@ -17,12 +17,31 @@
             justify-content: center;
         }
 
+        /* Bouton retour */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 8px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            background: white;
+            color: black;
+        }
+
         h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
         }
 
-        /* Sous-texte ajouté */
         .subtitle {
             font-size: 1.2em;
             opacity: 0.85;
@@ -31,9 +50,9 @@
 
         .buttons {
             display: flex;
-            flex-direction: row; /* Alignement horizontal */
+            flex-direction: row;
             justify-content: center;
-            gap: 40px; /* Espace entre les boutons */
+            gap: 40px;
         }
 
         button {
@@ -55,9 +74,15 @@
 </head>
 <body>
 
+    <!-- Bouton retour -->
+    <button class="back-button" onclick="location.href='index.html'">← Retour au menu</button>
+
     <h1>Choisissez un semestre</h1>
 
-    <div class="subtitle">Les missions réalisées ont toutes été faites sous deux semestres. La page "Autre" contient une mission annexe réalisée hors du cadre de ma formation récente.</div>
+    <div class="subtitle">
+        Les missions réalisées ont toutes été faites sous deux semestres.  
+        La page "Autre" contient une mission annexe réalisée hors du cadre de ma formation récente.
+    </div>
 
     <div class="buttons">
         <button onclick="location.href='semestre_1.html'">Semestre 1</button>
