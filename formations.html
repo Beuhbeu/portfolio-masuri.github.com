@@ -1,162 +1,242 @@
-<!DOCTYPE html> 
-<html lang="fr"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Formations</title> 
-    <style> 
-        body { 
-            margin: 0; 
-            font-family: Arial, sans-serif; 
-            background: linear-gradient(135deg, #1e1e1e, #3a3a3a); 
-            color: white; 
-            padding: 40px; 
-        } 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formations</title>
 
-        .top-links { margin-bottom: 10px; } 
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+            background-attachment: fixed; /* Évite que le dégradé se casse en descendant sur la page */
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 20px 40px 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
 
-        .top-links a { 
-            color: white; 
-            text-decoration: none;
+        /* Bouton retour placé en haut à gauche */
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            padding: 10px 20px;
             border: 2px solid white;
-            padding: 10px 20px; 
-            border-radius: 8px; 
-            display: inline-block; 
-            margin-right: 15px; 
-            transition: 0.3s; 
-        } 
-
-        .top-links a:hover { 
-            background: white; 
-            color: black; 
-        } 
-
-        .separator { 
-            width: 100%; 
-            height: 2px; 
-            background-color: white; 
-            margin: 20px 0 30px 0; 
-            opacity: 0.7; 
-        } 
-
-        h1 { font-size: 2.5rem; } 
-
-        p.intro { 
-            font-size: 1.2rem; 
-            opacity: 0.9; 
-            max-width: 700px; 
-            margin-bottom: 30px; 
-        } 
-
-        h2 {
-            font-size: 1.7rem;
-            margin-top: 40px;   
-            margin-bottom: 15px;
+            border-radius: 30px;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            z-index: 10;
         }
 
-        .formation-text {
+        .back-button:hover {
+            background: white;
+            color: #1e1e1e;
+            transform: scale(1.05);
+        }
+
+        .page-wrapper {
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Séparateur sous le titre */
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: white;
+            margin: 25px auto 40px auto;
+            border-radius: 2px;
+            opacity: 0.5;
+        }
+
+        .intro {
             font-size: 1.2rem;
+            line-height: 1.6;
             opacity: 0.9;
-            margin-bottom: 20px; 
+            max-width: 800px;
+            margin: 0 auto 50px auto;
         }
 
-        /* Paragraphes réguliers */
-        .double-formation-block p,
-        .albert-block p {
-            margin-top: 18px;
-            margin-bottom: 18px;
-            line-height: 1.45;
-            margin-right: 330px; /* espace réservé pour l'image */
+        /* Cartes de formation (Glassmorphism) */
+        .formation-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin-bottom: 40px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            text-align: left;
+            transition: 0.3s;
         }
 
-        /* Bloc contenant les deux premières formations + image */
-        .double-formation-block {
-            position: relative;
-            min-height: 600px; /* hauteur ajustée */
+        .formation-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5);
         }
 
-        .double-formation-block img {
-            position: absolute;
-            right: 0;
-            top: 20px;
-            width: 260px;
-            border-radius: 8px;
+        .formation-content {
+            flex: 1;
         }
 
-        /* Bloc contenant la formation 3 + image */
-        .albert-block {
-            position: relative;
-            min-height: 620px; /* hauteur ajustée */
+        .formation-content h2 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: white;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+            display: inline-block;
         }
 
-        .albert-block img {
-            position: absolute;
-            right: 0;
-            top: 20px;
+        .formation-subtitle {
+            font-size: 1.1rem;
+            color: white;
+            opacity: 0.8;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        .formation-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .formation-image {
             width: 300px;
-            border-radius: 8px;
+            flex-shrink: 0;
         }
 
-    </style> 
+        .formation-image img {
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        .formation-image img:hover {
+            transform: scale(1.03);
+            border-color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+
+        .mt-4 {
+            margin-top: 50px !important;
+        }
+
+        /* Responsive design pour mobile */
+        @media (max-width: 850px) {
+            .formation-card {
+                flex-direction: column;
+                align-items: center;
+            }
+            .formation-image {
+                width: 100%;
+                max-width: 400px;
+                order: -1; /* L'image passe automatiquement au-dessus du texte sur mobile ! */
+                margin-bottom: 20px;
+            }
+            .back-button {
+                top: 15px;
+                left: 15px;
+                font-size: 0.75rem;
+                padding: 8px 15px;
+            }
+            body {
+                padding-top: 70px;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="top-links"> 
-        <a href="index.html">Acceuil</a> 
-    </div>
+    <a class="back-button" href="index.html">← Retour à l'accueil</a>
 
-    <div class="separator"></div> 
+    <div class="page-wrapper">
+        <h1>Mes Formations</h1> 
 
-    <h1>Mes Formations</h1> 
+        <p class="intro"> 
+            Vous trouverez ici les différentes formations que j'ai suivies lors de mon parcours scolaire. Je présenterai brièvement les établissements et les cursus que j'ai intégrés. 
+            <br><br>
+            Les formations décrites commencent à partir de mon entrée en filière professionnelle.
+        </p> 
 
-    <p class="intro"> 
-        Ici, vous trouverez les différentes formations que j'ai reçu lors de mon parcours scolaire. 
-        Je présenterais brièvement les établissements et les formations que j'ai eu. 
-    </p> 
-
-    <p>Ces formations décrites commencerons à partir de mon éntrée en formation professionnelle.</p>
-
-    <!-- FORMATION 1 + FORMATION 2 + IMAGE -->
-    <div class="double-formation-block">
-
-        <h2>Formation 1 – Lycée Carnot (Roanne)</h2>
-        <div class="formation-text">
-            Seconde NTE (Numérique et Transitions Énergétique)
-        </div>
-        <p>Dans cette formation, j'ai pu décrouvrir deux corps de métiers. L'un était dans les métiers de l'électricité, et des transition énergétique. Ce côté était intéressant mais pas assez par rapport à côté de la formation en système numérique.</p>
-        <p>C'est cette formation qui m'a donnée l'envie de continuer sur cette voie. Toute l'année était centrée sur des connaissances faites pour découvrir la filière (par exemple, le câblage RJ45)</p>
-        <p>Cette année de découverte a donc été decisive pour le reste de mes formations.</p>  
-        
-        <h2>Formation 2 – Lycée Carnot (Roanne)</h2>
-        <div class="formation-text">
-            Première et terminale SN (Systèmes Numriques)
-        </div>
-        <p>Lors de ces deux année scolaires, j'ai pu approfondir mes connaissances sur la filière que j'avais choisis. Au sein de ce lycée, j'ai découvert plus en profondeurs le monde des normes qui régissent le métier, mais aussi d'autres choses.</p>
-        <p>Par exemple, j'ai pu découvrir la fibre optique et une partie de ses options, comment l'utiliser, etc... Mais aussi j'ai découvert les débuts des protocoles nécessaires pour la suite de mes études (FTP, SFTP, DHCP, DNS, etc...)</p>
-        <p>En était très importante, cette année m'a aussi permis de me familiariser avec des logiciels de simulations d'un système réseau, comme packet tracer par exemple.</p>
-        <p>En bref résumé, ces deux années m'ont permit d'acquérir les bases nécessaires à ma formation actuelles.</p>
-
-        <img src="carnot.jpg" alt="Lycée Carnot">
-    </div>
-
-    <!-- FORMATION 3 + IMAGE -->
-    <div class="albert-block">
-        <h2>Formation 3 – Lycée Albert Londres (Cusset)</h2>
-        <div class="formation-text">
-            BTS SIO (Système Informatique aux Organisations) -En cours-
+        <!-- FORMATION 1 + FORMATION 2 + IMAGE -->
+        <div class="formation-card">
+            <div class="formation-content">
+                <h2>Formation 1 – Lycée Carnot (Roanne)</h2>
+                <h3 class="formation-subtitle">Seconde NTE (Numérique et Transitions Énergétiques)</h3>
+                <p>Dans cette formation, j'ai pu découvrir deux corps de métiers. L'un concernait les métiers de l'électricité et des transitions énergétiques. Ce domaine était intéressant, mais beaucoup moins captivant à mes yeux que la partie consacrée aux systèmes numériques.</p>
+                <p>C'est cette découverte qui m'a donné l'envie de continuer sur cette voie. L'année était centrée sur l'acquisition de connaissances permettant d'explorer la filière (comme par exemple le câblage RJ45).</p>
+                <p>Cette année de découverte a donc été décisive pour le reste de mon parcours.</p>  
+                
+                <h2 class="mt-4">Formation 2 – Lycée Carnot (Roanne)</h2>
+                <h3 class="formation-subtitle">Première et Terminale SN (Systèmes Numériques)</h3>
+                <p>Lors de ces deux années scolaires, j'ai pu approfondir mes connaissances dans la filière que j'avais choisie. Au sein de ce lycée, j'ai découvert plus en profondeur le monde des normes qui régissent ce métier, ainsi que d'autres aspects techniques.</p>
+                <p>J'ai par exemple étudié la fibre optique et son déploiement, tout en découvrant les protocoles réseaux fondamentaux pour la suite de mes études (FTP, SFTP, DHCP, DNS, etc.).</p>
+                <p>Très formatrice, cette période m'a également permis de me familiariser avec des logiciels de simulation réseau tels que Packet Tracer.</p>
+                <p>En résumé, ces deux années m'ont permis d'acquérir les bases indispensables à ma formation actuelle.</p>
+            </div>
+            
+            <div class="formation-image">
+                <img src="carnot.jpg" alt="Lycée Carnot">
+            </div>
         </div>
 
-        <p>Cette formation est en cours, je ne pourrais donc pas décrire tout ce qu'elle m'a apporté dans son entièretée. Mais de ce que j'ai pu découvrir, pour l'instant, est réellement intriguant.</p>
-        <p>Je suis actuellement en filière SISR (Solution d'Infrastructure et Systèmes Réseaux) et j'ai commencé à approfondir mes conaissances dans ce domaine, nottament en cybersécurité ou j'ai pu apprendre beaucoup de choses.</p>
-        <p>Du côté du réseau, les bases sont grandement approfondie, comme avec l'extension des protocoles connus (POP3, par exemple) mais aussi en gagnant un petit peu d'experience en manipulant de l'équipement fournit par la formation (hub, interfaces réseau, câbles)</p>
-        <p>J'ai conscience que j'ai encore beaucoup à apprendre, et j'espère que le reste de ce BTS me sera d'autant plus bénéfique qu'il m'apportera d'experience dans le domaine que j'ai choisis.</p>
+        <!-- FORMATION 3 + IMAGE -->
+        <div class="formation-card">
+            <div class="formation-content">
+                <h2>Formation 3 – Lycée Albert Londres (Cusset)</h2>
+                <h3 class="formation-subtitle">BTS SIO (Services Informatiques aux Organisations) - En cours -</h3>
+                
+                <p>Cette formation étant en cours, je ne pourrai pas encore décrire tout ce qu'elle m'a apporté dans son entièreté. Cependant, ce que j'ai pu y découvrir jusqu'à présent est réellement passionnant.</p>
+                <p>Actuellement en spécialité SISR (Solutions d'Infrastructure, Systèmes et Réseaux), j'ai commencé à approfondir mes connaissances dans ce domaine, notamment en cybersécurité, où j'ai pu apprendre énormément de choses.</p>
+                <p>Côté réseau, les bases sont grandement approfondies, avec l'étude de nouveaux protocoles (POP3, par exemple), mais aussi en gagnant de l'expérience pratique grâce aux équipements fournis par la formation (hubs, interfaces réseau, câblage).</p>
+                <p>J'ai conscience qu'il me reste encore beaucoup à apprendre, et j'espère que la suite de ce BTS me sera d'autant plus bénéfique pour acquérir de l'expérience dans le domaine que j'ai choisi.</p>
+            </div>
 
-        <img src="albert londres.jpg" alt="Lycée Albert Londres">
+            <div class="formation-image">
+                <img src="albert londres.jpg" alt="Lycée Albert Londres">
+            </div>
+        </div>
+
     </div>
 
 </body>
 </html>
-
-
-
