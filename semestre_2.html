@@ -2,84 +2,175 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Semestre 2</title>
 
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
             margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
             color: white;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative; 
         }
 
-        /* Bouton retour */
+        /* Bouton retour placé en haut à gauche */
         .back-button {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 25px;
+            left: 25px;
             padding: 10px 20px;
             border: 2px solid white;
-            border-radius: 8px;
+            border-radius: 30px;
             background: transparent;
             color: white;
-            cursor: pointer;
-            font-size: 1em;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
 
         .back-button:hover {
             background: white;
-            color: black;
+            color: #1e1e1e;
+            transform: scale(1.05);
+        }
+
+        /* Encadré Glassmorphism */
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 60px 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+            margin-top: 50px; 
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 40px;
+            font-size: 3.5rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .buttons {
+        /* Séparateur élégant sous le titre */
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: white;
+            margin: 25px auto 40px auto;
+            border-radius: 2px;
+            opacity: 0.5;
+        }
+
+        /* Grille pour les boutons (alignement horizontal intelligent) */
+        .menu-grid {
             display: flex;
-            flex-direction: row; /* Alignement horizontal */
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 30px; /* Espace entre les boutons */
+            gap: 20px;
         }
 
-        button {
-            padding: 15px 35px;
-            font-size: 1.2em;
-            cursor: pointer;
-            border: 2px solid white;
-            border-radius: 8px;
-            background-color: transparent;
+        .menu-grid a {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px 20px;
+            width: calc(50% - 10px); 
+            min-width: 280px; 
+            box-sizing: border-box;
+            
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            
             color: white;
-            transition: 0.3s;
+            text-decoration: none;
+            transition: 0.4s;
+            text-align: center;
         }
 
-        button:hover {
-            background-color: white;
-            color: black;
+        .menu-grid a:hover {
+            background: white;
+            color: #1e1e1e;
+            border-color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .mission-number {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .mission-title {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Adaptation pour petits écrans de téléphone */
+        @media (max-width: 700px) {
+            .menu-grid a {
+                width: 100%; 
+            }
+            .back-button {
+                top: 15px;
+                left: 15px;
+                font-size: 0.75rem;
+                padding: 8px 15px;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
-
 <body>
 
     <!-- Bouton retour -->
-    <button class="back-button" onclick="location.href='menu_semestres.html'">← Retour au menu</button>
+    <a class="back-button" href="menu_semestres.html">← Retour aux semestres</a>
 
-    <h1>Semestre 2</h1>
+    <div class="container">
+        <h1>Semestre 2</h1>
 
-    <div class="buttons">
-        <button onclick="location.href='Mission_5.html'">Mission 5 - Mise en place d'un résaeu Poste à Poste.</button>
-        <button onclick="location.href='Mission_6.html'">Mission 6 - Clé YUMI.</button>
-        <button onclick="location.href='Mission_7.html'">Mission 7 - Refonte réseau.</button>
-        <button onclick="location.href='Mission_8.html'">Mission 8 - Création d'un portfolio.</button>
+        <div class="menu-grid">
+            <a href="Mission_5.html">
+                <span class="mission-number">Mission 5</span>
+                <span class="mission-title">Mise en place d'un réseau poste à poste</span>
+            </a>
+            <a href="Mission_6.html">
+                <span class="mission-number">Mission 6</span>
+                <span class="mission-title">Clé YUMI</span>
+            </a>
+            <a href="Mission_7.html">
+                <span class="mission-number">Mission 7</span>
+                <span class="mission-title">Refonte réseau</span>
+            </a>
+            <a href="Mission_8.html">
+                <span class="mission-number">Mission 8</span>
+                <span class="mission-title">Création d'un portfolio</span>
+            </a>
+        </div>
     </div>
 
 </body>
