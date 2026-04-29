@@ -2,92 +2,165 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choix du semestre</title>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
             margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
             color: white;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative; /* Indispensable pour placer le bouton de retour */
         }
 
-        /* Bouton retour */
+        /* Bouton retour placé en haut à gauche */
         .back-button {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 25px;
+            left: 25px;
             padding: 10px 20px;
             border: 2px solid white;
-            border-radius: 8px;
+            border-radius: 30px;
             background: transparent;
             color: white;
-            cursor: pointer;
-            font-size: 1em;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
 
         .back-button:hover {
             background: white;
-            color: black;
+            color: #1e1e1e;
+            transform: scale(1.05);
+        }
+
+        /* Encadré Glassmorphism */
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 60px 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            margin-top: 50px; /* Évite que la boîte tape le bouton retour sur mobile */
         }
 
         h1 {
-            font-size: 2.5em;
+            font-size: 3rem;
+            margin-top: 0;
             margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Séparateur élégant sous le titre */
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: white;
+            margin: 25px auto 30px auto;
+            border-radius: 2px;
+            opacity: 0.5;
         }
 
         .subtitle {
-            font-size: 1.2em;
-            opacity: 0.85;
-            margin-bottom: 40px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin: 0 auto 40px auto;
         }
 
-        .buttons {
+        .subtitle p {
+            margin: 10px 0;
+        }
+
+        /* Menu de sélection */
+        .menu {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .menu a {
+            display: flex;
             justify-content: center;
-            gap: 40px;
-        }
-
-        button {
-            padding: 15px 35px;
-            font-size: 1.2em;
-            cursor: pointer;
-            border: 2px solid white;
-            border-radius: 8px;
-            background-color: transparent;
+            align-items: center;
+            padding: 15px 30px;
+            width: 100%; 
+            max-width: 400px; /* Permet au bouton "hors formation" de respirer */
+            box-sizing: border-box;
+            
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            
             color: white;
-            transition: 0.3s;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.4s;
+            text-align: center;
         }
 
-        button:hover {
-            background-color: white;
-            color: black;
+        .menu a:hover {
+            background: white;
+            color: #1e1e1e;
+            border-color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Adaptation pour petits écrans de téléphone */
+        @media (max-width: 600px) {
+            .back-button {
+                top: 15px;
+                left: 15px;
+                font-size: 0.75rem;
+                padding: 8px 15px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Bouton retour -->
-    <button class="back-button" onclick="location.href='index.html'">← Retour au menu</button>
+    <!-- Bouton retour (transformé en vrai lien) -->
+    <a class="back-button" href="index.html">← Retour au menu</a>
 
-    <h1>Choisissez un semestre</h1>
+    <div class="container">
+        <h1>Choix du semestre</h1>
 
-    <div class="subtitle">
-        Les missions réalisées ont toutes été faites sous deux semestres.  
-        La page "Autre" contient une mission annexe réalisée hors du cadre de ma formation récente.
-    </div>
+        <div class="subtitle">
+            <p>L'ensemble des missions réalisées au cours de ma formation se répartit sur deux semestres.</p>
+            <p>Vous trouverez également une mission annexe réalisée en dehors de ce cadre.</p>
+        </div>
 
-    <div class="buttons">
-        <button onclick="location.href='semestre_1.html'">Semestre 1</button>
-        <button onclick="location.href='semestre_2.html'">Semestre 2</button>
-        <button onclick="location.href='Mission_10.html'">Hors formation - Capteur Piézo-électrique</button>
+        <div class="menu">
+            <a href="semestre_1.html">Semestre 1</a>
+            <a href="semestre_2.html">Semestre 2</a>
+            <a href="Mission_10.html">Hors formation - Capteur Piézo</a>
+        </div>
     </div>
 
 </body>
