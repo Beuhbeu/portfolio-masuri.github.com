@@ -8,73 +8,117 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
             color: white;
-
+            
+            /* Permet de centrer parfaitement l'encadré au milieu de l'écran */
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
-            height: 100vh;
+        /* L'encadré Glassmorphism central */
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 60px 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             text-align: center;
+            max-width: 800px;
+            width: 100%;
         }
 
         h1 {
             font-size: 3rem;
-            margin-bottom: 20px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Petite barre décorative sous le titre */
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: white;
+            margin: 25px auto 30px auto;
+            border-radius: 2px;
+            opacity: 0.5;
         }
 
         p {
             font-size: 1.2rem;
+            line-height: 1.6;
             opacity: 0.9;
-            max-width: 700px;
-            margin-bottom: 10px;
+            margin: 0 auto 15px auto;
         }
 
         /* MENU VERTICAL */
         .menu {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 30px; /* espace entre le texte et les boutons */
+            gap: 20px;
+            align-items: center;
+            margin-top: 40px;
         }
 
         .menu a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 30px;
+            width: 250px; /* Tous les boutons font la même taille */
+            
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            
             color: white;
             text-decoration: none;
-            font-size: 1.3rem;
-            padding: 12px 20px;
-            border: 2px solid white;
-            border-radius: 8px;
-            transition: 0.3s;
-            width: 200px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.4s; /* Animation douce */
         }
 
         .menu a:hover {
             background: white;
-            color: black;
+            color: #1e1e1e;
+            border-color: white;
+            transform: translateY(-5px); /* Le bouton monte légèrement */
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2); /* Ajout d'une aura lumineuse */
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Bienvenue sur mon Portfolio</h1>
+    <div class="container">
+        <h1>Bienvenue sur mon Portfolio</h1>
 
-    <p>
-        Sur ce site, vous trouverez un bref résumé de mon profil, des projets que j'ai pu réaliser et des formations et stages que j'ai effectués.
-    </p>
-    <p>
-        Des versions plus détaillées de chaque partie pourront être trouvées dans les sections dédiées.
-    </p>
+        <p>
+            Sur ce site, vous trouverez un aperçu de mon profil, des projets que j'ai pu réaliser, ainsi que des formations et stages que j'ai effectués.
+        </p>
+        <p>
+            Vous pourrez explorer chaque partie plus en détail via le menu ci-dessous.
+        </p>
 
-    <!-- MENU VERTICAL SOUS LE TEXTE -->
-    <div class="menu">
-        <a href="formations.html">Formations</a>
-        <a href="profil.html">Profil</a>
-        <a href="menu_semestres.html">Missions</a>
+        <!-- MENU VERTICAL SOUS LE TEXTE -->
+        <div class="menu">
+            <a href="profil.html">Profil</a>
+            <a href="formations.html">Formations</a>
+            <a href="menu_semestres.html">Missions</a>
+        </div>
     </div>
 
 </body>
