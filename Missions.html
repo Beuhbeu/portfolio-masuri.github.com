@@ -7,91 +7,202 @@
 
     <style>
         body {
+            /* Fusion des styles, police unifiée et flexbox vertical */
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: white;
-            padding: 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            position: relative; 
+            
+            /* Empêche les vagues de créer un scroll horizontal */
+            overflow-x: hidden; 
+
+            /* Arrière-plan animé */
+            background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+            animation: gradient 15s ease infinite;
+            background-size: 400% 400%;
+            background-attachment: fixed;
         }
 
-        a {
-            color: white;
-            text-decoration: none;
-            border: 2px solid white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            display: inline-block;
-            margin-bottom: 20px;
-            transition: 0.3s;
+        /* Animations du fond */
+        @keyframes gradient {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
         }
 
-        a:hover {
-            background: white;
-            color: black;
+        /* Styles des vagues */
+        .wave {
+            background: rgb(255 255 255 / 25%);
+            border-radius: 1000% 1000% 0 0;
+            position: fixed;
+            width: 200%;
+            height: 12em;
+            animation: wave 10s -3s linear infinite;
+            transform: translate3d(0, 0, 0);
+            opacity: 0.8;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .wave:nth-of-type(2) {
+            bottom: -1.25em;
+            animation: wave 18s linear reverse infinite;
+            opacity: 0.8;
+        }
+
+        .wave:nth-of-type(3) {
+            bottom: -2.5em;
+            animation: wave 20s -1s reverse infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes wave {
+            2% { transform: translateX(1); }
+            25% { transform: translateX(-25%); }
+            50% { transform: translateX(-50%); }
+            75% { transform: translateX(-25%); }
+            100% { transform: translateX(1); }
+        }
+
+        /* Conteneur global pour limiter la largeur */
+        .page-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            z-index: 1; /* Pour passer par-dessus les vagues */
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
+            margin-top: 0;
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 15px;
         }
 
+        /* Mise en page globale */
         .layout {
             display: flex;
             gap: 40px;
-            margin-top: 30px;
+            align-items: flex-start; /* Important pour que le menu de gauche reste en haut */
         }
 
+        /* Menu latéral (Bouton Accueil) */
         .left-menu {
             display: flex;
             flex-direction: column;
-            min-width: 180px;
+            min-width: 200px;
+            position: sticky;
+            top: 40px; /* Effet Sticky : le menu reste à l'écran quand on descend */
         }
 
+        .left-menu a {
+            padding: 12px 20px;
+            border: 2px solid white;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .left-menu a:hover {
+            background: white;
+            color: #1e1e1e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Zone centrale des projets */
         .projects-zone {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 40px; /* Espacement entre chaque projet */
         }
 
-        /* --- NOUVEAU SYSTÈME DE PROJETS --- */
-
+        /* Design des blocs de projet (Glassmorphism) */
         .project-block {
-            margin-bottom: 40px;
-            padding: 15px;
-            border-left: 3px solid white;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-left: 5px solid rgba(255, 255, 255, 0.7); /* Accroche visuelle à gauche */
         }
 
         .project-block h2 {
             margin-top: 0;
+            font-size: 2rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
         }
 
         .project-text {
-            opacity: 0.9;
+            font-size: 1.25rem;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .project-block p {
             font-size: 1.1rem;
-            line-height: 1.45;
+            line-height: 1.6;
             margin-bottom: 15px;
+            opacity: 0.95;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
 
         /* Photos sous le texte */
         .project-images {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 10px;
+            gap: 15px;
+            margin-top: 25px;
         }
 
         .project-images img {
-            width: 160px;
+            width: 200px;
             height: auto;
-            border-radius: 8px;
+            border-radius: 10px;
             object-fit: cover;
-            cursor: pointer;
+            cursor: zoom-in;
             transition: 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .project-images img:hover {
             transform: scale(1.05);
+            border-color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
 
-        /* --- ZOOM AU CLIC (LIGHTBOX) --- */
-
+        /* --- LIGHTBOX (Zoom) --- */
         #zoom-container {
             display: none;
             position: fixed;
@@ -100,116 +211,209 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
             z-index: 9999;
+            animation: fadeIn 0.3s ease;
+            cursor: zoom-out;
         }
 
-        #zoom-container img {
+        #zoom-img {
             max-width: 90%;
             max-height: 90%;
             border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            animation: zoomIn 0.25s ease;
         }
 
         #zoom-close {
             position: absolute;
             top: 30px;
             right: 40px;
-            font-size: 2rem;
+            font-size: 3rem;
             cursor: pointer;
             color: white;
             font-weight: bold;
+            transition: 0.3s;
         }
 
-        /* Section des 9 liens */
+        #zoom-close:hover {
+            color: #ff4757;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.6); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Section des liens supplémentaires */
         .more-projects {
-            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            text-align: center;
         }
 
-        .more-projects a {
-            margin-right: 10px;
-            margin-bottom: 10px;
+        .more-projects h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.5rem;
+        }
+
+        .more-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .more-links a {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .more-links a:hover {
+            background: white;
+            color: #1e1e1e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .layout {
+                flex-direction: column;
+            }
+            .left-menu {
+                position: static;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .project-block {
+                padding: 25px;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .project-images img {
+                width: calc(50% - 8px); /* 2 colonnes d'images sur tablette */
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .project-images img {
+                width: 100%; /* 1 seule image par ligne sur petit téléphone */
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Mes Projets</h1>
+    <!-- Éléments pour l'effet de vagues -->
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
 
-    <div class="layout">
+    <div class="page-wrapper">
+        <h1>Mes Projets</h1>
 
-        <div class="left-menu">
-            <a href="index.html">Acceuil</a>
+        <div class="layout">
+
+            <!-- MENU LATÉRAL (Sticky sur PC) -->
+            <div class="left-menu">
+                <a href="index.html">← Accueil</a>
+            </div>
+
+            <!-- ZONE CENTRALE (Projets) -->
+            <div class="projects-zone">
+
+                <!-- PROJET 1 -->
+                <div class="project-block">
+                    <h2>Projet 1 - Mise en place d'un Réseau poste à poste</h2>
+                    <div class="project-text">
+                        Ce projet n'est pas le premier qui a été réalisé, mais c'est sûrement l'un des plus intéressants que j'ai pu réaliser.
+                    </div>
+                    <p>Le but de cette activité était de simuler un réseau poste à poste entre deux PC portables fournis par le lycée. Le travail se déroulant en binôme, il a pu être exécuté rapidement et efficacement.</p>
+                    <p>La première partie de ce travail consistait à brancher par câble RJ45 et port console notre PC sur les serveurs locaux. Ensuite, la grande partie du TP se faisait sur l'invite de commande du routeur.</p>
+                    <p>L'activité a donc pu mêler une partie de manipulation virtuelle sur un invite en Linux et une partie physique en manipulant directement sur les commutateurs locaux.</p>
+                    <p>La finalité de l'activité consistait à faire communiquer les PC configurés de nos camarades avec le nôtre. Cette activité était réellement très intéressante, et nous a donné un peu d'expérience dans la configuration de ports.</p>
+                    <div class="project-images">
+                        <img src="A214_1.jpg" onclick="zoom(this.src)" alt="Image projet 1">
+                        <img src="ARMOIRES_A214.jpg" onclick="zoom(this.src)" alt="Image armoire">
+                        <img src="CLASSE_MOBILE_CISCO.jpg" onclick="zoom(this.src)" alt="Image classe">
+                    </div>
+                </div>
+
+                <!-- PROJET 2 -->
+                <div class="project-block">
+                    <h2>Projet 2 - Préparation de mise en réseau d'une salle</h2>
+                    <div class="project-text">
+                        Ce projet-là était plutôt particulier. Tout le projet s'est déroulé de manière plus ou moins théorique.
+                    </div>
+                    <p>Pour commencer, cette activité nous proposait de créer un plan pour l'aménagement d'une salle de classe. Dans le contexte, celle-ci allait être rénovée et notre mission était de faire un nouveau plan.</p>
+                    <p>Sur ce plan fourni devaient figurer : le traçage des câbles réseau, les prises rajoutées, les tables (leur organisation) et les pylônes (pour passer les câbles).</p>
+                    <p>On nous a laissé la liberté de placer les tables comme on le voulait. On nous a aussi laissé la salle en question en libre-service pour que l'on puisse y accéder pour y faire des mesures.</p>
+                    <p>Une autre chose intéressante, nous devions nous-mêmes trouver les références des câbles et des pylônes qui allaient être utilisés pour la rénovation. Un catalogue a donc été mis à notre disposition et le reste était de notre ressort.</p>
+                    <p>Cette activité étant moins longue que la précédente présentée, elle ne fut pas aussi intéressante, mais cela constituait un bon exercice pour nous aider à répondre aux besoins d'un client (même si c'était une simulation).</p>
+                    <div class="project-images">
+                        <img src="A207_1.jpg" onclick="zoom(this.src)" alt="Image salle">
+                        <img src="commutateurs_salles_SIO.PNG" onclick="zoom(this.src)" alt="Image commutateurs">
+                    </div>
+                </div>
+
+                <!-- PROJET 3 -->
+                <div class="project-block">
+                    <h2>Projet 3 - Création d'un site web</h2>
+                    <div class="project-text">
+                        Cette mission a été très différente des autres.
+                    </div>
+                    <p>Lors de celle-ci, il nous a été demandé de réaliser un site web par nos propres moyens et de le faire héberger et référencer. N'ayant aucune expérience dans ce domaine, ce fut une totale découverte.</p>
+                    <p>Ce fut une surprise de découvrir comment étaient faits les sites web et d'en créer un moi-même, le code n'était pas forcément complexe mais la pratique était souvent plus compliquée que la théorie.</p>
+                    <p>La partie hébergement de la mission m'a permis de découvrir plusieurs hébergeurs et comment référencer un site pour qu'il soit visible sans avoir le lien précis du site.</p>
+                    <p>Le travail de recensement fait lors de cette activité avait pour but de prouver nos recherches, et nous faire chercher plusieurs moyens d'hébergements et de prouver notre compréhension du code que nous avions écrit.</p>
+                    <p>J'ai personnellement apprécié ce travail, même s'il ne rentre pas entièrement dans les critères de la filière, il se retrouve très bénéfique pour des activités comme la création d'un portfolio en ligne.</p>
+                    <div class="project-images">
+                        <img src="A210_1.jpg" onclick="zoom(this.src)" alt="Image création site">
+                    </div>
+                </div>
+
+                <!-- SECTION DES LIENS VERS LES AUTRES PROJETS -->
+                <div class="more-projects">
+                    <h2>Autres projets réalisés</h2>
+                    <div class="more-links">
+                        <a href="projet4.html">Projet 4</a>
+                        <a href="projet5.html">Projet 5</a>
+                        <a href="projet6.html">Projet 6</a>
+                        <a href="projet7.html">Projet 7</a>
+                        <a href="projet8.html">Projet 8</a>
+                        <a href="projet9.html">Projet 9</a>
+                        <a href="projet10.html">Projet Annexe</a>
+                    </div>
+                </div>
+
+            </div>
         </div>
-
-        <div class="projects-zone">
-
-            <!-- PROJET 1 -->
-            <div class="project-block">
-                <h2>Projet 1 - Mise en place d'un Réseau poste à poste</h2>
-                <div class="project-text">
-                    Ce projet n'est pas le premier qui à été réalisé, mais c'est sûrement l'un des plus intéressant que j'ai pu réaliser.
-                </div>
-                <p>Le but de cette activité était de simuler un réseau poste a poste entre deux PC portables fournits par le lycée. Le travail se déroulant en binome, il a pu être executé rapidement et efficacement</p>
-                <p>La première partie de ce travail consistait à brancher par câble RJ45 et port console notre PC sur les serveurs locaux. Ensuite, la grande partie du TP se faisait sur l'invite de commande du routeur.</p>
-                <p>L'activité à donc pu méler une partie de manipulation virtuelle sur un invite en Linux et une partie physique en manipulant directement sur les commutateurs locaux.</p>
-                <p>La finalité de l'activité consistait à faire communiquer les PC configurés de nos camarades avec le notre. Cette activité était réellement très intéressante, et nous a donner un peu d'expérience dans la configurations de ports.</p>
-                <div class="project-images">
-                    <img src="A214_1.jpg" onclick="zoom(this.src)">
-                    <img src="ARMOIRES_A214.jpg" onclick="zoom(this.src)">
-                    <img src="CLASSE_MOBILE_CISCO.jpg" onclick="zoom(this.src)">
-                </div>
-            </div>
-
-            <!-- PROJET 2 -->
-            <div class="project-block">
-                <h2>Projet 2 - Préparation de mise en réseau d'une salle</h2>
-                <div class="project-text">
-                    Ce projet là était plutôt particulier. Tout le projet c'est déroulé de manière plus ou moins théorique.
-                </div>
-                <p>Pour commencer, cet activité nous proposait de créer un plan pour l'aménagement d'une salle de classe. Dans le contexte, celle-ci allait être rénovée et notre mission était de faire un nouveau plan.</p>
-                <p>Sur ce plan frounit devait figurer : le tracage des câbles réseau, les prises rajoutées, les tables (leurs organisations) et les pilonnes (pour passer les câbles) </p>
-                <p>On nous a laissé la libertée de placer les tables comme on le voulait. On nous a aussi laissé la salle en question en libre service pour que l'on puisse y accéder pour y faire des mesures.</p>
-                <p>Une autre chose intéressante, nous devions nous même trouver les références des câbles et des pilonnes qui allait être utilisés pour la rénovation. Un magazine a donc été mit à notre disposition et le reste était de notre ressort.</p>
-                <p>Cette activité étant moins longue que la précédente présentée, elle ne fut pas aussi intéressante, mais cela constituait un bon exercice pour nous aider a répondres au besoins d'un clients (même si cétait une simulation).</p>
-                <div class="project-images">
-                    <img src="A207_1.jpg" onclick="zoom(this.src)">
-                    <img src="commutateurs_salles_SIO.PNG" onclick="zoom(this.src)">
-                </div>
-            </div>
-
-            <!-- PROJET 3 -->
-            <div class="project-block">
-                <h2>Projet 3 - Création d'un site web</h2>
-                <div class="project-text">
-                    Cette mission a été très différente des autres.
-                </div>
-                <p>Lors de celle ci, il nous a été demandé de réaliser un site web de nos propres moyens et de le faire héberger et référencer. N'ayant aucune expérience dans ce domaine, ce fut une totale découverte.</p>
-                <p>Ce fut une surprise de découvrir comment était fait les sites web et d'en créer un moi même, le code n'était pas forcément complexe mais la pratique était souvent plus compliquée que la théorie.</p>
-                <p>La partie hébergement de la mission m'a permit de découvrir plusieurs hébergeurs et comment référencer un site pour qu'il soit visible sans avoir le lien précis du site.</p>
-                <p>Le travail de recensement fait lors de cette activité avait pour but de prouver nos recherches, et nous faire chercher plusieurs moyens d'hébergements et de prouver notre compréhension du code que nous avions écrit</p>
-                <p>J'ai personellement apprécié ce travail, même si il ne rentre pas entièrement dans les critères de la filière, il se retrouve très bénéfique pour des activités comme la création d'un portfolio en ligne.</p>
-                <div class="project-images">
-                    <img src="A210_1.jpg" onclick="zoom(this.src)">
-                </div>
-            </div>
-
-            <!-- SECTION DES 9 LIENS -->
-            <div class="more-projects">
-                <h2>Autres projets réalisés</h2>
-
-                <a href="projet4.html">Projet 4</a>
-                <a href="projet5.html">Projet 5</a>
-                <a href="projet6.html">Projet 6</a>
-                <a href="projet7.html">Projet 7</a>
-                <a href="projet8.html">Projet 8</a>
-                <a href="projet9.html">Projet 9</a>
-                <a href="projet10.html">Projet Annexe</a>
-            </div>
-
-        </div>
-
     </div>
 
     <!-- LIGHTBOX POUR ZOOM -->
@@ -222,22 +426,15 @@
         function zoom(src) {
             document.getElementById("zoom-img").src = src;
             document.getElementById("zoom-container").style.display = "flex";
+            document.body.style.overflow = 'hidden'; // Bloque le fond
         }
 
         function closeZoom() {
             document.getElementById("zoom-container").style.display = "none";
+            document.body.style.overflowY = 'auto'; // Réactive le défilement vertical
+            document.body.style.overflowX = 'hidden'; // Conserve le masquage horizontal
         }
     </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
