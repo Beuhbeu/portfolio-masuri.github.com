@@ -165,16 +165,28 @@
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
         }
 
-        /* Navigation en bas */
-        .links-zone {
-            margin-top: 50px;
-            width: 100%;
-            text-align: center;
+        /* Bouton Retour en haut à gauche */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        /* Adaptation pour les petits écrans (mobiles) */
+        @media (max-width: 768px) {
+            .back-btn {
+                position: static;
+                align-self: flex-start;
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
 
 <body>
+
+    <!-- Bouton de retour placé en haut -->
+    <a class="btn back-btn" href="index.html">← Retour à l'accueil</a>
 
     <h1>Mon Profil</h1>
     <p class="intro">
@@ -216,11 +228,6 @@
             </a>
         </div>
 
-    </div>
-
-    <!-- Navigation -->
-    <div class="links-zone">
-        <a class="btn" href="index.html">← Retour à l'accueil</a>
     </div>
 
 </body>
