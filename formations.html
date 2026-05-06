@@ -1,13 +1,10 @@
-Voici le code mis à jour pour agrandir les images et la carte Google Maps. 
+Voici le code final avec le fond animé et l'effet de vagues ! 
 
-Voici les principaux changements que j'ai effectués pour que le rendu soit parfait :
-1. **Agrandissement de la colonne média** (`.formation-media`) : sa largeur passe de `300px` à `400px`.
-2. **Hauteur de la carte augmentée** (`.formation-map iframe`) : elle passe de `250px` à `300px` pour rester proportionnelle aux nouvelles images.
-3. **Ajustement du conteneur principal** (`.page-wrapper`) : il passe à `1100px` de large (au lieu de 1000px) pour que le texte ne soit pas trop écrasé par les images plus grandes.
-4. **Mise à jour du design responsive (mobile/tablette)** : j'ai changé le point de rupture de `850px` à `950px` et augmenté la taille max des images sur mobile de `400px` à `500px`.
-5. **Amélioration du zoom au survol** : l'effet de zoom (`hover`) a été très légèrement augmenté pour mieux s'adapter aux grandes images (`scale(1.05)` au lieu de `1.03`).
+J'ai fait attention à deux détails importants :
+1. J'ai fusionné les styles que tu as donnés pour le `body` avec les anciens (pour garder le texte blanc, l'espacement et le centrage).
+2. J'ai ajouté un `overflow-x: hidden;` sur le `body` pour empêcher les vagues (qui font 200% de la largeur) de créer une barre de défilement horizontale en bas de la page.
 
-Voici le code complet à copier-coller :
+Voici le code complet prêt à l'emploi :
 
 ```html
 <!DOCTYPE html>
@@ -19,10 +16,9 @@ Voici le code complet à copier-coller :
 
     <style>
         body {
+            /* Fusion des styles existants et de ton code */
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
-            background-attachment: fixed; /* Évite que le dégradé se casse en descendant sur la page */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: white;
             min-height: 100vh;
             display: flex;
@@ -31,6 +27,73 @@ Voici le code complet à copier-coller :
             padding: 80px 20px 40px 20px;
             box-sizing: border-box;
             position: relative;
+            
+            /* Empêche les vagues de créer un scroll horizontal */
+            overflow-x: hidden; 
+
+            /* Ton animation de dégradé */
+            background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+            animation: gradient 15s ease infinite;
+            background-size: 400% 400%;
+            background-attachment: fixed;
+        }
+
+        /* Animations du fond */
+        @keyframes gradient {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        /* Styles des vagues */
+        .wave {
+            background: rgb(255 255 255 / 25%);
+            border-radius: 1000% 1000% 0 0;
+            position: fixed;
+            width: 200%;
+            height: 12em;
+            animation: wave 10s -3s linear infinite;
+            transform: translate3d(0, 0, 0);
+            opacity: 0.8;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .wave:nth-of-type(2) {
+            bottom: -1.25em;
+            animation: wave 18s linear reverse infinite;
+            opacity: 0.8;
+        }
+
+        .wave:nth-of-type(3) {
+            bottom: -2.5em;
+            animation: wave 20s -1s reverse infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes wave {
+            2% {
+                transform: translateX(1);
+            }
+            25% {
+                transform: translateX(-25%);
+            }
+            50% {
+                transform: translateX(-50%);
+            }
+            75% {
+                transform: translateX(-25%);
+            }
+            100% {
+                transform: translateX(1);
+            }
         }
 
         /* Bouton retour placé en haut à gauche */
@@ -59,7 +122,7 @@ Voici le code complet à copier-coller :
         }
 
         .page-wrapper {
-            max-width: 1100px; /* Augmenté pour laisser plus d'espace */
+            max-width: 1100px;
             width: 100%;
             text-align: center;
         }
@@ -70,6 +133,7 @@ Voici le code complet à copier-coller :
             margin-bottom: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Ajout d'une petite ombre pour ressortir sur le fond coloré */
         }
 
         /* Séparateur sous le titre */
@@ -90,17 +154,18 @@ Voici le code complet à copier-coller :
             opacity: 0.9;
             max-width: 800px;
             margin: 0 auto 50px auto;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.3);
         }
 
         /* Cartes de formation (Glassmorphism) */
         .formation-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1); /* J'ai légèrement augmenté l'opacité du verre pour un meilleur contraste */
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             padding: 40px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px); /* Flou légèrement augmenté */
+            -webkit-backdrop-filter: blur(12px);
             margin-bottom: 40px;
             display: flex;
             gap: 40px;
@@ -110,8 +175,9 @@ Voici le code complet à copier-coller :
         }
 
         .formation-card:hover {
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
             box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.15); /* S'éclaircit un peu au survol */
         }
 
         .formation-content {
@@ -123,15 +189,16 @@ Voici le code complet à copier-coller :
             margin-top: 0;
             margin-bottom: 5px;
             color: white;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
             padding-bottom: 10px;
             display: inline-block;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .formation-subtitle {
             font-size: 1.1rem;
             color: white;
-            opacity: 0.8;
+            opacity: 0.9;
             margin-top: 10px;
             margin-bottom: 20px;
             font-style: italic;
@@ -142,16 +209,17 @@ Voici le code complet à copier-coller :
             font-size: 1.1rem;
             line-height: 1.6;
             margin-bottom: 15px;
-            opacity: 0.9;
+            opacity: 0.95;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
         /* Conteneur pour les médias (Images + Map) à droite */
         .formation-media {
-            width: 400px; /* Les images sont maintenant plus grandes (anciennement 300px) */
+            width: 400px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            gap: 25px; /* Espace entre les éléments médias */
+            gap: 25px;
         }
 
         .formation-image {
@@ -162,13 +230,13 @@ Voici le code complet à copier-coller :
             width: 100%;
             display: block;
             border-radius: 10px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: 0.3s;
         }
 
         .formation-image img:hover {
-            transform: scale(1.05); /* Effet de zoom accentué pour les grandes images */
+            transform: scale(1.05);
             border-color: white;
             box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
@@ -177,11 +245,11 @@ Voici le code complet à copier-coller :
         .formation-map {
             width: 100%;
             border-radius: 10px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             overflow: hidden;
             transition: 0.3s;
-            background: rgba(255, 255, 255, 0.05); /* Fond en cas de chargement */
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .formation-map:hover {
@@ -192,7 +260,7 @@ Voici le code complet à copier-coller :
 
         .formation-map iframe {
             width: 100%;
-            height: 300px; /* Plus haut pour compenser l'agrandissement en largeur */
+            height: 300px;
             border: 0;
             display: block;
         }
@@ -202,15 +270,15 @@ Voici le code complet à copier-coller :
         }
 
         /* Responsive design pour mobile */
-        @media (max-width: 950px) { /* Ajusté pour basculer plus tôt en vue mobile */
+        @media (max-width: 950px) {
             .formation-card {
                 flex-direction: column;
                 align-items: center;
             }
             .formation-media {
                 width: 100%;
-                max-width: 500px; /* Permet des images encore plus grandes sur mobile */
-                order: -1; /* Les médias passent automatiquement au-dessus du texte sur mobile ! */
+                max-width: 500px;
+                order: -1;
                 margin-bottom: 30px;
             }
             .back-button {
@@ -230,6 +298,11 @@ Voici le code complet à copier-coller :
 </head>
 
 <body>
+
+    <!-- Éléments pour l'effet de vagues (en fond) -->
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
 
     <a class="back-button" href="index.html">← Retour à l'accueil</a>
 
@@ -261,24 +334,21 @@ Voici le code complet à copier-coller :
             
             <!-- Colonne droite pour les images et cartes -->
             <div class="formation-media">
-                <!-- Première image existante -->
                 <div class="formation-image">
                     <img src="carnot.jpg" alt="Lycée Carnot">
                 </div>
                 
-                <!-- NOUVEL EMPLACEMENT : Deuxième image Carnot (JPEG) -->
                 <div class="formation-image">
                     <img src="carnot2.jpg" alt="Lycée Carnot (Autre vue)">
                 </div>
 
-                <!-- NOUVEL EMPLACEMENT : Carte Google Maps -->
                 <div class="formation-map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2777.625184850774!2d4.0722212!3d46.0357732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f42d2a459ccbbb%3A0xc682f4e8d350b9bb!2sLyc%C3%A9e%20Carnot!5e0!3m2!1sfr!2sfr!4v1714902000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
 
-        <!-- FORMATION 3 + IMAGE -->
+        <!-- FORMATION 3 + IMAGES + MAP -->
         <div class="formation-card">
             <div class="formation-content">
                 <h2>Formation 3 – Lycée Albert Londres (Cusset)</h2>
@@ -290,10 +360,18 @@ Voici le code complet à copier-coller :
                 <p>J'ai conscience qu'il me reste encore beaucoup à apprendre, et j'espère que la suite de ce BTS me sera d'autant plus bénéfique pour acquérir de l'expérience dans le domaine que j'ai choisi.</p>
             </div>
 
-            <!-- Colonne droite pour l'image -->
+            <!-- Colonne droite pour les médias -->
             <div class="formation-media">
                 <div class="formation-image">
                     <img src="albert londres.jpg" alt="Lycée Albert Londres">
+                </div>
+
+                <div class="formation-image">
+                    <img src="al.jpg" alt="Lycée Albert Londres (Vue supplémentaire)">
+                </div>
+
+                <div class="formation-map">
+                    <iframe src="https://maps.google.com/maps?q=Lyc%C3%A9e%20Albert%20Londres%20Cusset&t=&z=14&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
@@ -303,3 +381,5 @@ Voici le code complet à copier-coller :
 </body>
 </html>
 ```
+
+*(Petite note : j'ai aussi ajouté de légères ombres portées (`text-shadow`) sur les textes et un peu renforcé le rendu "verre flouté" des cartes (`rgba` et `blur`), car avec un fond très coloré et animé, cela permet au texte de rester parfaitement lisible !)*
