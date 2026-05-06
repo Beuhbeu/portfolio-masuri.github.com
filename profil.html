@@ -121,6 +121,7 @@
             margin-bottom: 20px;
         }
 
+        /* Conteneur Image avec options de zoom */
         .cv-image-container {
             width: 100%;
             overflow: hidden;
@@ -129,17 +130,45 @@
             border: 2px solid rgba(255, 255, 255, 0.2);
             transition: 0.3s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: zoom-in;
+            position: relative;
+        }
+
+        .cv-image-container::after {
+            content: '🔍 Zoomer';
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            font-weight: bold;
+        }
+
+        .cv-image-container:hover::after {
+            bottom: 15px;
+            opacity: 1;
         }
 
         .cv-image-container:hover {
             border-color: white;
-            transform: scale(1.03);
             box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
 
         .cv-image-container img {
             width: 100%;
             display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .cv-image-container:hover img {
+            transform: scale(1.08); /* Zoom interne au survol */
         }
 
         /* Boutons Modernes */
@@ -180,6 +209,61 @@
                 margin-bottom: 20px;
             }
         }
+
+        /* --- STYLES DE LA MODALE DE ZOOM --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 95%;
+            max-height: 90vh;
+            border-radius: 5px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            object-fit: contain;
+            cursor: zoom-out;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            color: #ff4757;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
@@ -219,7 +303,8 @@
         <div class="box cv-zone">
             <h2>Mon Curriculum Vitae</h2>
             
-            <div class="cv-image-container">
+            <!-- Clic pour ouvrir la modale de zoom -->
+            <div class="cv-image-container" onclick="openModal()">
                 <img src="CV Masuri Benoît.jpg" alt="CV de MASURI Benoît">
             </div>
             
@@ -229,6 +314,25 @@
         </div>
 
     </div>
+
+    <!-- Modale pour le zoom de l'image -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" src="CV Masuri Benoît.jpg" alt="CV Zoomé" onclick="closeModal()">
+    </div>
+
+    <!-- Script pour faire fonctionner la modale -->
+    <script>
+        function openModal() {
+            document.getElementById('imageModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Empêche le défilement de l'arrière-plan
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+            document.body.style.overflow = 'auto'; // Réactive le défilement
+        }
+    </script>
 
 </body>
 </html>
