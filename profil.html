@@ -7,15 +7,83 @@
 
     <style>
         body {
+            /* Fusion des anciens styles et du nouveau fond */
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: white;
             padding: 40px 20px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            
+            /* Empêche les vagues de créer un scroll horizontal */
+            overflow-x: hidden; 
+
+            /* Arrière-plan animé */
+            background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+            animation: gradient 15s ease infinite;
+            background-size: 400% 400%;
+            background-attachment: fixed;
+        }
+
+        /* Animations du fond */
+        @keyframes gradient {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        /* Styles des vagues */
+        .wave {
+            background: rgb(255 255 255 / 25%);
+            border-radius: 1000% 1000% 0 0;
+            position: fixed;
+            width: 200%;
+            height: 12em;
+            animation: wave 10s -3s linear infinite;
+            transform: translate3d(0, 0, 0);
+            opacity: 0.8;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .wave:nth-of-type(2) {
+            bottom: -1.25em;
+            animation: wave 18s linear reverse infinite;
+            opacity: 0.8;
+        }
+
+        .wave:nth-of-type(3) {
+            bottom: -2.5em;
+            animation: wave 20s -1s reverse infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes wave {
+            2% {
+                transform: translateX(1);
+            }
+            25% {
+                transform: translateX(-25%);
+            }
+            50% {
+                transform: translateX(-50%);
+            }
+            75% {
+                transform: translateX(-25%);
+            }
+            100% {
+                transform: translateX(1);
+            }
         }
 
         h1 {
@@ -25,15 +93,17 @@
             text-align: center;
             letter-spacing: 2px;
             text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Ajout d'ombre pour lisibilité */
         }
 
         .intro {
             text-align: center;
             font-size: 1.2rem;
-            opacity: 0.9;
+            opacity: 0.95;
             max-width: 700px;
             margin-bottom: 50px;
             line-height: 1.5;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2); /* Ajout d'ombre */
         }
 
         /* Effet Glassmorphism pour les encadrés */
@@ -47,13 +117,13 @@
         }
 
         .box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1); /* Opacité augmentée pour un meilleur contraste */
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             padding: 40px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px); /* Flou légèrement augmenté */
+            -webkit-backdrop-filter: blur(12px);
         }
 
         /* Zone de Texte */
@@ -66,8 +136,9 @@
             margin-top: 0;
             font-size: 2rem;
             margin-bottom: 20px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
             padding-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .text-zone p {
@@ -75,6 +146,7 @@
             line-height: 1.6;
             margin-bottom: 15px;
             opacity: 0.95;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
         /* Badges de Qualités */
@@ -86,7 +158,7 @@
         }
 
         .quality {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.2);
             padding: 10px 20px;
             border-radius: 20px;
             font-weight: bold;
@@ -96,6 +168,7 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: 0.3s;
             cursor: default;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
 
         .quality:hover {
@@ -103,6 +176,7 @@
             color: #1e1e1e;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+            text-shadow: none;
         }
 
         /* Zone CV */
@@ -119,6 +193,7 @@
             margin-top: 0;
             font-size: 1.8rem;
             margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         /* Conteneur Image avec options de zoom */
@@ -127,7 +202,7 @@
             overflow: hidden;
             border-radius: 10px;
             margin-bottom: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             transition: 0.3s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             cursor: zoom-in;
@@ -175,7 +250,7 @@
         .btn {
             display: inline-block;
             padding: 12px 25px;
-            background: transparent;
+            background: rgba(255, 255, 255, 0.1);
             border: 2px solid white;
             border-radius: 30px;
             color: white;
@@ -185,6 +260,7 @@
             text-transform: uppercase;
             font-size: 0.9rem;
             letter-spacing: 1px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
         .btn:hover {
@@ -192,6 +268,7 @@
             color: #1e1e1e;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+            text-shadow: none; /* Le texte devient sombre, donc on enlève l'ombre blanche */
         }
 
         /* Bouton Retour en haut à gauche */
@@ -199,6 +276,7 @@
             position: absolute;
             top: 20px;
             left: 20px;
+            z-index: 10;
         }
 
         /* Adaptation pour les petits écrans (mobiles) */
@@ -269,6 +347,11 @@
 
 <body>
 
+    <!-- Éléments pour l'effet de vagues (en fond) -->
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+
     <!-- Bouton de retour placé en haut -->
     <a class="btn back-btn" href="index.html">← Retour à l'accueil</a>
 
@@ -325,12 +408,13 @@
     <script>
         function openModal() {
             document.getElementById('imageModal').classList.add('active');
-            document.body.style.overflow = 'hidden'; // Empêche le défilement de l'arrière-plan
+            document.body.style.overflow = 'hidden'; // Empêche le défilement pendant que l'image est ouverte
         }
 
         function closeModal() {
             document.getElementById('imageModal').classList.remove('active');
-            document.body.style.overflow = 'auto'; // Réactive le défilement
+            document.body.style.overflowY = 'auto'; // Réactive le défilement vertical
+            document.body.style.overflowX = 'hidden'; // Garde le défilement horizontal masqué pour les vagues
         }
     </script>
 
