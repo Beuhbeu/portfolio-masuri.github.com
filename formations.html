@@ -1,3 +1,15 @@
+Voici le code mis à jour pour agrandir les images et la carte Google Maps. 
+
+Voici les principaux changements que j'ai effectués pour que le rendu soit parfait :
+1. **Agrandissement de la colonne média** (`.formation-media`) : sa largeur passe de `300px` à `400px`.
+2. **Hauteur de la carte augmentée** (`.formation-map iframe`) : elle passe de `250px` à `300px` pour rester proportionnelle aux nouvelles images.
+3. **Ajustement du conteneur principal** (`.page-wrapper`) : il passe à `1100px` de large (au lieu de 1000px) pour que le texte ne soit pas trop écrasé par les images plus grandes.
+4. **Mise à jour du design responsive (mobile/tablette)** : j'ai changé le point de rupture de `850px` à `950px` et augmenté la taille max des images sur mobile de `400px` à `500px`.
+5. **Amélioration du zoom au survol** : l'effet de zoom (`hover`) a été très légèrement augmenté pour mieux s'adapter aux grandes images (`scale(1.05)` au lieu de `1.03`).
+
+Voici le code complet à copier-coller :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -47,7 +59,7 @@
         }
 
         .page-wrapper {
-            max-width: 1000px;
+            max-width: 1100px; /* Augmenté pour laisser plus d'espace */
             width: 100%;
             text-align: center;
         }
@@ -135,7 +147,7 @@
 
         /* Conteneur pour les médias (Images + Map) à droite */
         .formation-media {
-            width: 300px;
+            width: 400px; /* Les images sont maintenant plus grandes (anciennement 300px) */
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
@@ -156,7 +168,7 @@
         }
 
         .formation-image img:hover {
-            transform: scale(1.03);
+            transform: scale(1.05); /* Effet de zoom accentué pour les grandes images */
             border-color: white;
             box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
@@ -173,14 +185,14 @@
         }
 
         .formation-map:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
             border-color: white;
             box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
 
         .formation-map iframe {
             width: 100%;
-            height: 250px;
+            height: 300px; /* Plus haut pour compenser l'agrandissement en largeur */
             border: 0;
             display: block;
         }
@@ -190,14 +202,14 @@
         }
 
         /* Responsive design pour mobile */
-        @media (max-width: 850px) {
+        @media (max-width: 950px) { /* Ajusté pour basculer plus tôt en vue mobile */
             .formation-card {
                 flex-direction: column;
                 align-items: center;
             }
             .formation-media {
                 width: 100%;
-                max-width: 400px;
+                max-width: 500px; /* Permet des images encore plus grandes sur mobile */
                 order: -1; /* Les médias passent automatiquement au-dessus du texte sur mobile ! */
                 margin-bottom: 30px;
             }
@@ -290,3 +302,4 @@
 
 </body>
 </html>
+```
